@@ -21,7 +21,7 @@ jobs:
       run: make check
     - name: make distcheck
       run: make distcheck
-            - name: Setup wasm-tools  
+    - name: Setup wasm-tools  
   # You may pin to the exact commit or the version.
   # uses: jcbhmr/setup-wasm-tools@967df801cc3282b13a6a084571e0dbe429910a4c
   uses: jcbhmr/setup-wasm-tools@v2.0.2
