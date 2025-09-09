@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-wasm:
-    runs-on: windows
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
