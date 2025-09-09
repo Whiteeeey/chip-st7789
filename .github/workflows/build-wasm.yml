@@ -1,0 +1,33 @@
+name: Build WASM from C
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install latest
+        ./emsdk activate latest
+        echo "EMSDK_PATH=$(pwd)" >> $GITHUB_ENV
+        echo "PATH=$EMSDK_PATH:$EMSDK_PATH/upstream/emscripten:$PATH" >> $GITHUB_ENV
+
+    - name: Compile C to WebAssembly
+      run: |
+        emcc st7789.chip.c -o st7789-chip.wasm -s WASM=1 -O3
+
+    - name: Upload WebAssembly artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: wasm-build
+        path: your_output.wasm
