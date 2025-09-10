@@ -10,20 +10,20 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build chip
         uses: wokwi/wokwi-chip-clang-action@main
         with:
-          sources: "src/main.c"
-      - name: Copy chip.json
-        run: sudo cp chip.json dist
+          sources: "st7789.chip.c"
+      - name: Copy st7789-chip.json
+        run: sudo cp st7789-chip.json dist
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
           name: chip
           path: |
-            dist/chip.json
-            dist/chip.wasm
+            dist/st7789-chip.json
+            dist/st7789-chip.wasm
 
   # The release job only runs when you push a tag starting with "v", e.g. v1.0.0 
   release:
