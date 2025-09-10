@@ -18,7 +18,7 @@ jobs:
       
     - name: Compile C to WebAssembly
       run: |
-        emcc st7789.chip.c -o st7789-chip.wasm -s WASM=1 -O3
+        emcc st7789.chip.c -o st7789-chip.wasm --no-entry -s WASM=1 -O3
 
     - name: Upload WebAssembly artifact
       uses: actions/upload-artifact@v4
