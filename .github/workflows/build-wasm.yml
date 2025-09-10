@@ -19,6 +19,7 @@ jobs:
         cd emsdk
         ./emsdk install latest
         ./emsdk activate latest
+        echo 'source "/home/runner/work/chip-st7789/chip-st7789/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
         echo "EMSDK_PATH=$(pwd)" >> $GITHUB_ENV
         echo "PATH=$EMSDK_PATH/upstream/emscripten:$PATH" >> $GITHUB_ENV
 
