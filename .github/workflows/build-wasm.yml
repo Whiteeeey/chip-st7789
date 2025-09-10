@@ -13,16 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Emscripten
-      run: |
-        git clone https://github.com/emscripten-core/emsdk.git
-        cd emsdk
-        ./emsdk install latest
-        ./emsdk activate latest
-        echo 'source "/home/runner/work/chip-st7789/chip-st7789/emsdk/emsdk_env.sh"' >> $HOME/.bash_profile
-        echo "EMSDK_PATH=$(pwd)" >> $GITHUB_ENV
-        echo "PATH=$EMSDK_PATH/upstream/emscripten:$PATH" >> $GITHUB_ENV
-
+    - name: "emsdk"
+      uses: mymindstorm/setup-emsdk@v14
+      
     - name: Compile C to WebAssembly
       run: |
         emcc st7789.chip.c -o st7789-chip.wasm -s WASM=1 -O3
@@ -31,4 +24,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: wasm-build
-        path: your_output.wasm
+        path: st7789-chip.wasm
