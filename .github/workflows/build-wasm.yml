@@ -20,7 +20,7 @@ jobs:
         ./emsdk install latest
         ./emsdk activate latest
         echo "EMSDK_PATH=$(pwd)" >> $GITHUB_ENV
-        echo "PATH=$EMSDK_PATH:$EMSDK_PATH/upstream/emscripten:$PATH" >> $GITHUB_ENV
+        echo "PATH=$EMSDK_PATH/upstream/emscripten:$PATH" >> $GITHUB_ENV
 
     - name: Compile C to WebAssembly
       run: |
