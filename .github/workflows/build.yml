@@ -15,15 +15,15 @@ jobs:
         uses: wokwi/wokwi-chip-clang-action@main
         with:
           sources: "st7789.chip.c"
-      - name: Copy st7789-chip.json
-        run: sudo cp st7789-chip.json dist
+      - name: Copy st7789.chip.json
+        run: sudo cp st7789.chip.json dist
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
           name: chip
           path: |
-            dist/st7789-chip.json
-            dist/st7789-chip.wasm
+            dist/st7789.chip.json
+            dist/st7789.chip.wasm
 
   # The release job only runs when you push a tag starting with "v", e.g. v1.0.0 
   release:
