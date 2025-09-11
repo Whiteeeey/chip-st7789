@@ -1,4 +1,4 @@
-// Wokwi st7789 Display Driver Chip (fixed)
+// Wokwi st7789 Display Driver Chip
 // Based on the following driver
 // Wokwi IL9163 Display Driver Chip
 //
@@ -380,3 +380,4 @@ void chip_spi_done(void *user_data, uint8_t *buffer, uint32_t count) {
     spi_start(chip->spi, chip->spi_buffer, sizeof(chip->spi_buffer));
   }
 }
+
