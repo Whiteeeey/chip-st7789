@@ -20,7 +20,7 @@ jobs:
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
-          name: chip
+          name: st7789-chip
           path: |
             dist/st7789.chip.json
             dist/st7789.chip.wasm
@@ -35,10 +35,10 @@ jobs:
       - name: Download compiled chip
         uses: actions/download-artifact@v3
         with:
-          name: chip
-          path: chip
+          name: st7789-chip
+          path: st7789-chip
       - name: Create a zip archive
-        run: cd chip && zip -9 ../chip.zip chip.*
+        run: cd st7789-chip && zip -9 ../st7789-chip.zip st7789-chip.*
         env:
           ZIP_VERSION: ${{ github.ref_name }}
       - name: Upload release
