@@ -14,16 +14,16 @@ jobs:
       - name: Build chip
         uses: wokwi/wokwi-chip-clang-action@main
         with:
-          sources: "st7789.chip.c"
-      - name: Copy st7789.chip.json
-        run: sudo cp st7789.chip.json dist
+          sources: "src/main.c"
+      - name: Copy chip.json
+        run: sudo cp chip.json dist
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
-          name: st7789-chip
+          name: chip
           path: |
-            dist/st7789.chip.json
-            dist/st7789.chip.wasm
+            dist/chip.json
+            dist/chip.wasm
 
   # The release job only runs when you push a tag starting with "v", e.g. v1.0.0 
   release:
@@ -35,14 +35,14 @@ jobs:
       - name: Download compiled chip
         uses: actions/download-artifact@v4
         with:
-          name: st7789-chip
-          path: st7789-chip
+          name: chip
+          path: chip
       - name: Create a zip archive
-        run: cd st7789-chip && zip -9 ../st7789-chip.zip st7789-chip.*
+        run: cd chip && zip -9 ../chip.zip chip.*
         env:
           ZIP_VERSION: ${{ github.ref_name }}
       - name: Upload release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v4
         with:
           artifacts: chip.zip
           token: ${{ secrets.GITHUB_TOKEN }}
